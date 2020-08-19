@@ -22,7 +22,8 @@
 		"vadimcn.vscode-lldb",
 		"yzhang.markdown-all-in-one",
 		"ms-vscode.cpptools",
-		"ms-python.python"
+		"ms-python.python",
+		"streetsidesoftware.code-spell-checker"
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
