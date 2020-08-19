@@ -9,8 +9,9 @@
   :use_exceptions: FALSE
   :use_test_preprocessor: TRUE
   :use_auxiliary_dependencies: TRUE
+  :pre_build: scripts/pre_build.py
   :build_root: build
-#  :release_build: TRUE
+  :release_build: TRUE
   :test_file_prefix: test_
   :which_ceedling: gem
   :ceedling_version: 0.30.0
@@ -33,11 +34,12 @@
   :test:
     - +:test/**
     - -:test/support
+    - -:src/main*
   :source:
     - src/**
   :support:
     - test/support
-  :libraries: []
+  :libraries: ["/workspaces/rust-interoperability/rust/target/debug/librust_code_callable_from_c.so"]
 
 :defines:
   # in order to add common defines:
@@ -79,7 +81,14 @@
 # Ceedling defaults to using gcc for compiling, linking, etc.
 # As [:tools] is blank, gcc will be used (so long as it's in your system path)
 # See documentation to configure a given toolchain for use
+:tools:
+  :pre_build:
+    # This script only runs because the "command_hooks" pluggin was enabled.
+    # See also ...
+    # https://github.com/ThrowTheSwitch/Ceedling/tree/215c5ed51798cf94e5acf8da132ce54d88eaebf9/plugins/command_hooks
+    :executable: scripts/pre_build.py 
 
+    
 # LIBRARIES
 # These libraries are automatically injected into the build process. Those specified as
 # common will be used in all types of builds. Otherwise, libraries can be injected in just
@@ -87,7 +96,13 @@
 :libraries:
   :placement: :end
   :flag: "-l${1}"
-  :path_flag: "-L ${1}"
+
+  # Not sure why but the "." must exist in this line.
+  # Otherwise a linking error will occur when a new unit test is written.
+  # See also...
+  # https://www.greyblake.com/blog/2017-08-10-exposing-rust-library-to-c/
+  :path_flag: "-L. ${1}"
+
   :system: []    # for example, you might list 'm' to grab the math library
   :test: []
   :release: []
@@ -98,4 +113,6 @@
   :enabled:
     - stdout_pretty_tests_report
     - module_generator
+    - command_hooks
+
 ...

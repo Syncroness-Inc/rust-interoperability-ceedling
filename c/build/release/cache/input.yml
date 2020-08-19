@@ -11,7 +11,6 @@
   :options_paths: []
   :release_build: true
   :use_auxiliary_dependencies: true
-  :pre_build: scripts/pre_build.py
   :build_root: build
   :which_ceedling: gem
   :ceedling_version: 0.30.0
@@ -24,14 +23,12 @@
   :test:
   - "+:test/**"
   - "-:test/support"
-  - "-:src/main*"
   :source:
   - src/**
   :support:
   - test/support
   :include: []
-  :libraries:
-  - "/workspaces/rust-interoperability/rust/target/debug/librust_code_callable_from_c.so"
+  :libraries: []
   :test_toolchain_include: []
   :release_toolchain_include: []
 :files:
@@ -55,7 +52,7 @@
   :common: []
 :libraries:
   :flag: "-l${1}"
-  :path_flag: "-L. ${1}"
+  :path_flag: "-L ${1}"
   :test: []
   :test_preprocess: []
   :release: []
@@ -106,12 +103,6 @@
   :includes: []
   :file_suffix: _runner
 :tools:
-  :pre_build:
-    :executable: scripts/pre_build.py
-    :name: pre_build
-    :stderr_redirect: :none
-    :background_exec: :none
-    :optional: false
   :test_compiler:
     :executable: gcc
     :name: default_test_compiler
@@ -250,11 +241,9 @@
   :enabled:
   - stdout_pretty_tests_report
   - module_generator
-  - command_hooks
   :display_raw_test_results: false
   :stdout_pretty_tests_report_path: "/var/lib/gems/2.5.0/gems/ceedling-0.30.0/lib/../plugins/stdout_pretty_tests_report"
   :module_generator_path: "/var/lib/gems/2.5.0/gems/ceedling-0.30.0/lib/../plugins/module_generator"
-  :command_hooks_path: "/var/lib/gems/2.5.0/gems/ceedling-0.30.0/lib/../plugins/command_hooks"
 :gcov:
   :reports:
   - HtmlDetailed

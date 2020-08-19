@@ -1,0 +1,14 @@
+# Configuration items for cbindgen. See https://github.com/eqrion/cbindgen/blob/master/docs.md
+# for full documentation.
+language = "C"
+
+# An optional string of text to output at the beginning of the generated file
+#header = "/* This file was auto generated using cbindgen */"
+
+# Whether to add a `#pragma once` guard 
+# default: doesn't emit a `#pragma once`
+# pragma_once = true
+
+# Whether to include a comment with the version of cbindgen used to generate the file
+# default: false
+include_version = true
