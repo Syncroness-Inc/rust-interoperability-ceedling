@@ -19,4 +19,8 @@ The remaining instructions will assume you have these requirements correctly ins
 Congratulations. You should now have a fully functional environment.
 
 # Running ceedling unit tests
-Simply navigate to the 
+Simply navigate to the `c` directory and type
+
+```bash
+ceedling test:all
+```

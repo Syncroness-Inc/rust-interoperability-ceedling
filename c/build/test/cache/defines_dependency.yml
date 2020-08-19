@@ -1,5 +1,0 @@
----
-src/rust-calls.c:
-- TEST
-src/main.c:
-- TEST

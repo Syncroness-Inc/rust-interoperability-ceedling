@@ -9,7 +9,6 @@
   :use_exceptions: FALSE
   :use_test_preprocessor: TRUE
   :use_auxiliary_dependencies: TRUE
-  :pre_build: scripts/pre_build.py
   :build_root: build
   :release_build: TRUE
   :test_file_prefix: test_
@@ -39,7 +38,7 @@
     - src/**
   :support:
     - test/support
-  :libraries: ["/workspaces/rust-interoperability/rust/target/debug/librust_code_callable_from_c.so"]
+  :libraries: ["../rust/target/debug/librust_code_callable_from_c.so"]
 
 :defines:
   # in order to add common defines:
